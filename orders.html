@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة الطلبات - لوحة تحكم الكافيه</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-container">
+    <header class="admin-header">
+      <h1><i class="fas fa-clipboard-list"></i> إدارة الطلبات</h1>
+      <nav class="admin-nav">
+        <a href="orders.html" class="active"><i class="fas fa-clipboard-list"></i> الطلبات</a>
+        <a href="menu.html"><i class="fas fa-utensils"></i> الأصناف</a>
+        <a href="reports.html"><i class="fas fa-chart-bar"></i> التقارير</a>
+        <button onclick="logout()" class="btn-logout">
+          <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </button>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterOrders('all')">الكل</button>
+        <button class="filter-tab" onclick="filterOrders('pending')">قيد الانتظار</button>
+        <button class="filter-tab" onclick="filterOrders('completed')">المكتملة</button>
+        <button class="filter-tab danger" onclick="clearCompleted()">
+          <i class="fas fa-trash"></i> حذف المكتملة
+        </button>
+      </div>
+      
+      <div id="orders" class="orders-container"></div>
+
+      <div class="orders-stats">
+        <div class="stat-card">
+          <i class="fas fa-clock"></i>
+          <h3>الطلبات قيد الانتظار</h3>
+          <span id="pending-count">0</span>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-check-circle"></i>
+          <h3>الطلبات المكتملة</h3>
+          <span id="completed-count">0</span>
+        </div>
+        <div class="stat-card total-card">
+          <i class="fas fa-coins"></i>
+          <h3>إجمالي المكتمل</h3>
+          <span id="total-amount">0.00 ج</span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="admin-footer">
+      <p>نظام إدارة الكافيه &copy; <span id="admin-year"></span></p>
+    </footer>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="orders.js"></script>
+</body>
+</html>
